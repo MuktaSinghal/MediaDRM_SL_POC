@@ -29,21 +29,22 @@ public class MainActivity extends AppCompatActivity {
         } catch (UnsupportedSchemeException e) {
             e.printStackTrace();
         }
+        getSLID();
     }
 
     public void setSL3(View view) {
         mediaDrm.setPropertyString("securityLevel", "L3");
         Log.d(TAG, "setSL: set to L3");
-        getSLID(view);
+        getSLID();
     }
 
     public void setSL1(View view) {
         mediaDrm.setPropertyString("securityLevel", "L1");
         Log.d(TAG, "setSL: set to L1");
-        getSLID(view);
+        getSLID();
     }
 
-    public void getSLID(View view) {
+    private void getSLID() {
         byte[] wideVineId = mediaDrm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
         String wvid = android.util.Base64.encodeToString(wideVineId, Base64.NO_WRAP);
         String level = mediaDrm.getPropertyString("securityLevel");
